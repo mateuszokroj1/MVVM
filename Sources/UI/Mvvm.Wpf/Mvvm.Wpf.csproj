@@ -5,4 +5,8 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Mvvm" Version="0.9.0-CI-20201120-225040" />
+  </ItemGroup>
+
 </Project>
