@@ -9,7 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Mvvm.Wpf" Version="0.9.0-CI-20201121-140812" />
+    <PackageReference Include="Mvvm.Core" Version="0.9.0-CI-20201121-190532" />
+    <PackageReference Include="Mvvm.Wpf" Version="0.9.0-CI-20201121-192746" />
   </ItemGroup>
 
 </Project>
