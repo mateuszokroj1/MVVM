@@ -15,6 +15,7 @@
     <Description>Collection of commonly used elements in MVVM architectural pattern.</Description>
     <Product>MVVM</Product>
     <RepositoryType>git</RepositoryType>
+    <PackageId>Mvvm.Core</PackageId>
   </PropertyGroup>
 
 </Project>
