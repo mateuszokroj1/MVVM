@@ -3,6 +3,17 @@
   <PropertyGroup>
     <TargetFrameworks>net46;netcoreapp3.1;net5-windows</TargetFrameworks>
     <UseWPF>true</UseWPF>
+    <Version>0.9.0</Version>
+    <Authors>Mateusz Okrój</Authors>
+    <Product>MVVM for WPF</Product>
+    <Description>Mostly used elements in MVVM architectural pattern with WPF.</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://mateuszokroj1.visualstudio.com/Libraries</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/mateuszokroj1/MVVM.git</RepositoryUrl>
+    <PackageTags>mvvm wpf ui viewmodel model command binding</PackageTags>
+    <PackageReleaseNotes>This is developer prerelease version of this library.</PackageReleaseNotes>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>

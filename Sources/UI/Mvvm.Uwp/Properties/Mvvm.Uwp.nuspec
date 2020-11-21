@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<package>
+	<metadata>
+		<id>Mvvm.Uwp</id>
+		<version>0.9.0</version>
+		<title>MVVM for Universal Windows Platform</title>
+		<authors>Mateusz Okrój</authors>
+		<owners>Mateusz Okrój</owners>
+		<license type="expression">MIT</license>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<repository type="git" url="https://github.com/mateuszokroj1/MVVM.git" branch="Features/MVVM.UWP/0.9.0-CI" />
+		<description>Mostly used elements in MVVM architectural pattern with UWP.</description>
+		<releaseNotes>Preview developer version from CI rolling build.</releaseNotes>
+		<tags>mvvm uwp universal windows ui viewmodel model command binding</tags>
+	</metadata>
+	<files>
+		<file src="bin\Debug\Mvvm.Uwp.dll" target="lib\uap10.0" />
+		<file src="bin\Debug\Mvvm.Uwp.pdb" target="lib\uap10.0" />
+		<file src="bin\Debug\Mvvm.Uwp.XML" target="lib\uap10.0" />
+	</files>
+</package>

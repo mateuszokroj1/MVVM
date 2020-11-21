@@ -8,12 +8,13 @@
     <Authors>Mateusz Okrój</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://mateuszokroj1.visualstudio.com/Libraries</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/mateuszokroj1/MVVM</RepositoryUrl>
+    <RepositoryUrl>https://github.com/mateuszokroj1/MVVM.git</RepositoryUrl>
     <PackageTags>mvvm wpf uwp universal windows net net5 ui viewmodel model</PackageTags>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageReleaseNotes>Preview developer version from CI rolling build</PackageReleaseNotes>
     <Description>Collection of commonly used elements in MVVM architectural pattern.</Description>
     <Product>MVVM</Product>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
 </Project>
