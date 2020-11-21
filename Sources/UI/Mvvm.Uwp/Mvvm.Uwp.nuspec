@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<package>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
 	<metadata>
 		<id>Mvvm.Uwp</id>
 		<version>0.9.0</version>
@@ -12,6 +12,12 @@
 		<description>Mostly used elements in MVVM architectural pattern with UWP.</description>
 		<releaseNotes>Preview developer version from CI rolling build.</releaseNotes>
 		<tags>mvvm uwp universal windows ui viewmodel model command binding</tags>
+		<dependencies>
+			<dependency id="Mvvm" version="0.9.0" />
+			<group targetFramework="uap10.0">
+				<dependency id="Microsoft.NETCore.UniversalWindowsPlatform" version="6.2.11" />
+			</group>
+		</dependencies>
 	</metadata>
 	<files>
 		<file src="bin\Debug\Mvvm.Uwp.dll" target="lib\uap10.0" />
