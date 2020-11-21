@@ -5,9 +5,14 @@ VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF", "Mvvm.Examples.Wpf\WPF.csproj", "{3AD01E6C-FEBF-4848-BC62-AFE6D371898F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFCore", "WpfCore\WPFCore.csproj", "{115E60C0-5FB7-45CA-BC0A-26246F5BAD84}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFCore", "WpfCore\WPFCore.csproj", "{115E60C0-5FB7-45CA-BC0A-26246F5BAD84}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UWP", "Mvvm.Examples.Uwp\UWP.csproj", "{C6BF54BE-0AC3-4BF5-B696-DDE94F5D7E6E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DC2263C9-DE09-47DE-9554-4C721BD1A883}"
+	ProjectSection(SolutionItems) = preProject
+		nuget.config = nuget.config
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
