@@ -14,10 +14,15 @@ namespace Mvvm
     {
         #region Constructors
 
-        public Command()
+        public Command(Func<object, bool> canExecute, Action<object> toExecute)
         {
-
+            this.canExecute = canExecute ?? throw new NullReferenceException(nameof(canExecute));
+            this.toExecute = toExecute ?? throw new NullReferenceException(nameof(canExecute));
         }
+
+        public Command()
+        : this()
+        { }
 
         protected Command() { }
 
@@ -27,21 +32,31 @@ namespace Mvvm
 
         public event EventHandler CanExecuteChanged;
         private readonly Action<object> toExecute;
-        private readonly 
+        private readonly Func<object, bool> canExecute;
 
         #endregion
 
         #region Methods
 
-        public bool CanExecute(object parameter)
-        {
-            throw new NotImplementedException();
-        }
+        /// <summary>
+        /// Checks that command can be executed
+        /// </summary>
+        /// <param name="parameter">Command parameter</param>
+        public bool CanExecute(object parameter) =>
+            this.canExecute(parameter);
 
-        public void Execute(object parameter)
-        {
-            throw new NotImplementedException();
-        }
+        /// <summary>
+        /// Invokes delegate used in constructor
+        /// </summary>
+        /// <param name="parameter">Command parameter</param>
+        public void Execute(object parameter) =>
+            this.toExecute(parameter);
+
+        /// <summary>
+        /// Invokes CanExecuteChanged event.
+        /// </summary>
+        public void RaiseCanExecuteChanged() =>
+            CanExecuteChanged?.Invoke(this, EventArgs.Empty);
 
         #endregion
     }
