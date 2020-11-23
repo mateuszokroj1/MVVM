@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Mvvm
@@ -14,25 +10,82 @@ namespace Mvvm
     {
         #region Constructors
 
+        /// <summary>
+        /// Creates a new instance of <see cref="Command"/>.
+        /// </summary>
+        /// <param name="canExecute">Gives information about command availability.</param>
+        /// <param name="toExecute">Runs action to do.</param>
+        /// <exception cref="NullReferenceException"/>
         public Command(Func<object, bool> canExecute, Action<object> toExecute)
         {
             this.canExecute = canExecute ?? throw new NullReferenceException(nameof(canExecute));
             this.toExecute = toExecute ?? throw new NullReferenceException(nameof(canExecute));
         }
 
-        public Command()
-        : this()
+        /// <summary>
+        /// Creates a new instance of <see cref="Command"/>.
+        /// </summary>
+        /// <param name="canExecute">Gives information about command availability.</param>
+        /// <param name="toExecute">Runs action to do.</param>
+        /// <exception cref="NullReferenceException"/>
+        public Command(Func<object, bool> canExecute, Action toExecute) :
+            this(canExecute, parameter => toExecute())
         { }
 
+        /// <summary>
+        /// Creates a new instance of <see cref="Command"/>.
+        /// </summary>
+        /// <param name="canExecute">Gives information about command availability.</param>
+        /// <param name="toExecute">Runs action to do.</param>
+        /// <exception cref="NullReferenceException"/>
+        public Command(Func<bool> canExecute, Action<object> toExecute) :
+            this(parameter => canExecute(), toExecute)
+        { }
+
+        /// <summary>
+        /// Creates a new instance of <see cref="Command"/>.
+        /// </summary>
+        /// <param name="canExecute">Gives information about command availability.</param>
+        /// <param name="toExecute">Runs action to do.</param>
+        /// <exception cref="NullReferenceException"/>
+        public Command(Func<bool> canExecute, Action toExecute) :
+            this(parameter => canExecute(), parameter => toExecute())
+        { }
+
+        /// <summary>
+        /// Creates a new instance of <see cref="Command"/>.
+        /// </summary>
+        /// <param name="toExecute">Runs action to do.</param>
+        /// <exception cref="NullReferenceException"/>
+        public Command(Action<object> toExecute) :
+            this(parameter => true, toExecute)
+        { }
+
+        /// <summary>
+        /// Creates a new instance of <see cref="Command"/>.
+        /// </summary>
+        /// <param name="toExecute">Runs action to do.</param>
+        /// <exception cref="NullReferenceException"/>
+        public Command(Action toExecute) :
+            this(parameter => true, toExecute)
+        { }
+
+        /// <summary>
+        /// Creates a new instance of <see cref="Command"/>. Parameters must be set manually.
+        /// </summary>
         protected Command() { }
 
         #endregion
 
         #region Fields
 
+        /// <summary>
+        /// Notifies when CanExecute changed.
+        /// </summary>
         public event EventHandler CanExecuteChanged;
-        private readonly Action<object> toExecute;
-        private readonly Func<object, bool> canExecute;
+
+        protected readonly Action<object> toExecute;
+        protected readonly Func<object, bool> canExecute;
 
         #endregion
 
