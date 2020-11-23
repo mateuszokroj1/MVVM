@@ -1,44 +1,67 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Mvvm
 {
     /// <summary>
-    /// 
+    /// Base class for view models classes. Implements basic functionality 
     /// </summary>
     public abstract class ViewModel : INotifyPropertyChanged
     {
         #region Fields
 
+        /// <summary>
+        /// Notifies when property changed.
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion
 
         #region Methods
 
-        protected void RaisePropertyChanged([CallerMemberName] string propertyName = "")
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="propertyName"></param>
+        protected void RaisePropertyChanged([CallerMemberName] string propertyName = "") =>
+            RaisePropertiesChanged(propertyName);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="propertiesNames"></param>
+        protected void RaisePropertiesChanged(params string[] propertiesNames)
         {
-            if (!string.IsNullOrWhiteSpace(propertyName))
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            if (propertiesNames?.Length > 0)
+                foreach (var name in propertiesNames)
+                    if (!string.IsNullOrWhiteSpace(name))
+                        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="destination"></param>
+        /// <param name="newValue"></param>
+        /// <param name="propertyName"></param>
         protected void SetPropertyAndNotify<T>(ref T destination, T newValue, [CallerMemberName] string propertyName = "") =>
             SetPropertyAndNotify(ref destination, newValue, propertyName);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="destination"></param>
+        /// <param name="newValue"></param>
+        /// <param name="propertiesNames"></param>
         protected void SetPropertyAndNotify<T>(ref T destination, T newValue, params string[] propertiesNames)
         {
             if(!Equals(destination, newValue))
             {
                 destination = newValue;
 
-                if (propertiesNames?.Length > 0)
-                    foreach (var name in propertiesNames)
-                        RaisePropertyChanged(name);
+                RaisePropertiesChanged(propertiesNames);
             }
         }
 
