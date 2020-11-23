@@ -18,16 +18,4 @@
     <PackageId>Mvvm.Core</PackageId>
   </PropertyGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
-    <PackageReference Include="System.Reactive">
-      <Version>5.0.0</Version>
-    </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)' == 'net5'">
-    <PackageReference Include="System.Reactive">
-      <Version>5.0.0</Version>
-    </PackageReference>
-  </ItemGroup>
-
 </Project>

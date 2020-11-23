@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reactive.Linq;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -14,27 +13,9 @@ namespace Mvvm
     /// </summary>
     public abstract class ViewModel : INotifyPropertyChanged
     {
-        #region Constructor
-
-        /// <summary>
-        /// Initializes <see cref="ViewModel"/> instance.
-        /// </summary>
-        protected ViewModel()
-        {
-            PropertyChangedObservable = Observable.FromEventPattern<>();
-        }
-
-        #endregion
-
         #region Fields
 
         public event PropertyChangedEventHandler PropertyChanged;
-
-        #endregion
-
-        #region Properties
-
-        public IObservable<string> PropertyChangedObservable { get; }
 
         #endregion
 
