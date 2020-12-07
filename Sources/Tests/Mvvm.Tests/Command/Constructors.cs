@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xunit;
 
@@ -60,37 +56,128 @@ namespace Mvvm.Tests.Command
         [Fact]
         public void Constructor2_WhenArgumentsAreNull_Variant1_ShouldThrowNullReference()
         {
-            Assert.Throws<NullReferenceException>(() => new Mvvm.Command(canExecute1_null, toExecute1_valid));
+            Assert.Throws<NullReferenceException>(() => new Mvvm.Command(canExecute1_null, toExecute2_valid));
         }
 
         [Fact]
         public void Constructor2_WhenArgumentsAreNull_Variant2_ShouldThrowNullReference()
         {
-            Assert.Throws<NullReferenceException>(() => new Mvvm.Command(canExecute1_null, toExecute1_valid));
+            Assert.Throws<NullReferenceException>(() => new Mvvm.Command(canExecute1_valid, toExecute2_null));
         }
 
         [Fact]
         public void Constructor2_WhenArgumentsAreNull_Variant3_ShouldThrowNullReference()
         {
-            Assert.Throws<NullReferenceException>(() => new Mvvm.Command(canExecute1_null, toExecute1_valid));
+            Assert.Throws<NullReferenceException>(() => new Mvvm.Command(canExecute1_null, toExecute2_null));
         }
 
         [Fact]
         public void Constructor2_WhenArgumentsAreValid_ShouldSetFields()
         {
+            var result = new Mvvm.Command(canExecute1_valid, toExecute2_valid);
 
+            Assert.Throws<ApplicationException>(() => result.CanExecute(null));
+            Assert.Throws<ApplicationException>(() => result.Execute(null));
+        }
+
+        #endregion
+
+        #region Constructor3
+
+        [Fact]
+        public void Constructor3_WhenArgumentsAreNull_Variant1_ShouldThrowNullReference()
+        {
+            Assert.Throws<NullReferenceException>(() => new Mvvm.Command(canExecute2_null, toExecute1_valid));
         }
 
         [Fact]
-        public void Constructor2_When_Should()
+        public void Constructor3_WhenArgumentsAreNull_Variant2_ShouldThrowNullReference()
         {
-
+            Assert.Throws<NullReferenceException>(() => new Mvvm.Command(canExecute2_valid, toExecute1_null));
         }
 
         [Fact]
-        public void Constructor2_When_Should()
+        public void Constructor3_WhenArgumentsAreNull_Variant3_ShouldThrowNullReference()
         {
+            Assert.Throws<NullReferenceException>(() => new Mvvm.Command(canExecute2_null, toExecute1_null));
+        }
 
+        [Fact]
+        public void Constructor3_WhenArgumentsAreValid_ShouldSetFields()
+        {
+            var result = new Mvvm.Command(canExecute2_valid, toExecute1_valid);
+
+            Assert.Throws<ApplicationException>(() => result.CanExecute(null));
+            Assert.Throws<ApplicationException>(() => result.Execute(null));
+        }
+
+        #endregion
+
+        #region Constructor4
+
+        [Fact]
+        public void Constructor4_WhenArgumentsAreNull_Variant1_ShouldThrowNullReference()
+        {
+            Assert.Throws<NullReferenceException>(() => new Mvvm.Command(canExecute2_null, toExecute2_valid));
+        }
+
+        [Fact]
+        public void Constructor4_WhenArgumentsAreNull_Variant2_ShouldThrowNullReference()
+        {
+            Assert.Throws<NullReferenceException>(() => new Mvvm.Command(canExecute2_valid, toExecute2_null));
+        }
+
+        [Fact]
+        public void Constructor4_WhenArgumentsAreNull_Variant3_ShouldThrowNullReference()
+        {
+            Assert.Throws<NullReferenceException>(() => new Mvvm.Command(canExecute2_null, toExecute2_null));
+        }
+
+        [Fact]
+        public void Constructor4_WhenArgumentsAreValid_ShouldSetFields()
+        {
+            var result = new Mvvm.Command(canExecute2_valid, toExecute2_valid);
+
+            Assert.Throws<ApplicationException>(() => result.CanExecute(null));
+            Assert.Throws<ApplicationException>(() => result.Execute(null));
+        }
+
+        #endregion
+
+        #region Constructor5
+
+        [Fact]
+        public void Constructor5_WhenArgumentIsNull_Variant1_ShouldThrowNullReference()
+        {
+            Assert.Throws<NullReferenceException>(() => new Mvvm.Command(toExecute1_null));
+        }
+
+        [Fact]
+        public void Constructor5_WhenArgumentIsValid_ShouldSetFields()
+        {
+            var result = new Mvvm.Command(toExecute1_valid);
+
+            Assert.True(result.CanExecute(null));
+            Assert.Throws<ApplicationException>(() => result.Execute(null));
+        }
+
+        #endregion
+
+        #region Constructor6
+
+        [Fact]
+        public void Constructor6_WhenArgumentsAreNull_Variant1_ShouldThrowNullReference()
+        {
+            Assert.Throws<NullReferenceException>(() => new Mvvm.Command(toExecute2_null));
+        }
+
+        [Fact]
+        public void Constructor6_WhenArgumentsAreValid_ShouldSetFields()
+        {
+            var result = new Mvvm.Command(toExecute2_valid);
+
+            Assert.True(result.CanExecute(null));
+            Assert.Throws<ApplicationException>(() => result.Execute(null));
         }
 
         #endregion
