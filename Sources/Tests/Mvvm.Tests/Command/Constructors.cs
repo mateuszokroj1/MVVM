@@ -60,9 +60,9 @@ namespace Mvvm.Tests.Command
         }
 
         [Fact]
-        public void Constructor2_WhenArgumentsAreNull_Variant2_ShouldThrowNullReference()
+        public void Constructor2_WhenArgumentsAreNull_Variant2_ShouldNotThrow()
         {
-            Assert.Throws<NullReferenceException>(() => new Mvvm.Command(canExecute1_valid, toExecute2_null));
+            new Mvvm.Command(canExecute1_valid, toExecute2_null);
         }
 
         [Fact]
@@ -85,9 +85,9 @@ namespace Mvvm.Tests.Command
         #region Constructor3
 
         [Fact]
-        public void Constructor3_WhenArgumentsAreNull_Variant1_ShouldThrowNullReference()
+        public void Constructor3_WhenArgumentsAreNull_Variant1_ShouldNotThrow()
         {
-            Assert.Throws<NullReferenceException>(() => new Mvvm.Command(canExecute2_null, toExecute1_valid));
+            new Mvvm.Command(canExecute2_null, toExecute1_valid);
         }
 
         [Fact]
@@ -116,21 +116,21 @@ namespace Mvvm.Tests.Command
         #region Constructor4
 
         [Fact]
-        public void Constructor4_WhenArgumentsAreNull_Variant1_ShouldThrowNullReference()
+        public void Constructor4_WhenArgumentsAreNull_Variant1_ShouldNotThrow()
         {
-            Assert.Throws<NullReferenceException>(() => new Mvvm.Command(canExecute2_null, toExecute2_valid));
+            new Mvvm.Command(canExecute2_null, toExecute2_valid);
         }
 
         [Fact]
-        public void Constructor4_WhenArgumentsAreNull_Variant2_ShouldThrowNullReference()
+        public void Constructor4_WhenArgumentsAreNull_Variant2_ShouldNotThrow()
         {
-            Assert.Throws<NullReferenceException>(() => new Mvvm.Command(canExecute2_valid, toExecute2_null));
+            new Mvvm.Command(canExecute2_valid, toExecute2_null);
         }
 
         [Fact]
-        public void Constructor4_WhenArgumentsAreNull_Variant3_ShouldThrowNullReference()
+        public void Constructor4_WhenArgumentsAreNull_Variant3_ShouldNotThrow()
         {
-            Assert.Throws<NullReferenceException>(() => new Mvvm.Command(canExecute2_null, toExecute2_null));
+            new Mvvm.Command(canExecute2_null, toExecute2_null);
         }
 
         [Fact]
@@ -147,7 +147,7 @@ namespace Mvvm.Tests.Command
         #region Constructor5
 
         [Fact]
-        public void Constructor5_WhenArgumentIsNull_Variant1_ShouldThrowNullReference()
+        public void Constructor5_WhenArgumentIsNull_ShouldThrowNullReference()
         {
             Assert.Throws<NullReferenceException>(() => new Mvvm.Command(toExecute1_null));
         }
@@ -166,9 +166,9 @@ namespace Mvvm.Tests.Command
         #region Constructor6
 
         [Fact]
-        public void Constructor6_WhenArgumentsAreNull_Variant1_ShouldThrowNullReference()
+        public void Constructor6_WhenArgumentIsNull_ShouldNotThrow()
         {
-            Assert.Throws<NullReferenceException>(() => new Mvvm.Command(toExecute2_null));
+            new Mvvm.Command(toExecute2_null);
         }
 
         [Fact]

@@ -47,7 +47,6 @@ namespace Mvvm
         /// </summary>
         /// <param name="canExecute">Gives information about command availability.</param>
         /// <param name="toExecute">Runs action to do.</param>
-        /// <exception cref="NullReferenceException"/>
         public Command(Func<bool> canExecute, Action toExecute) :
             this(parameter => canExecute(), parameter => toExecute())
         { }

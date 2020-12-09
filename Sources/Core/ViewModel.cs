@@ -46,7 +46,7 @@ namespace Mvvm
         /// <param name="newValue"></param>
         /// <param name="propertyName"></param>
         protected void SetPropertyAndNotify<T>(ref T destination, T newValue, [CallerMemberName] string propertyName = "") =>
-            SetPropertyAndNotify(ref destination, newValue, propertyName);
+            SetPropertyAndNotifyMany(ref destination, newValue, propertyName);
 
         /// <summary>
         /// 
@@ -55,7 +55,7 @@ namespace Mvvm
         /// <param name="destination"></param>
         /// <param name="newValue"></param>
         /// <param name="propertiesNames"></param>
-        protected void SetPropertyAndNotify<T>(ref T destination, T newValue, params string[] propertiesNames)
+        protected void SetPropertyAndNotifyMany<T>(ref T destination, T newValue, params string[] propertiesNames)
         {
             if(!Equals(destination, newValue))
             {

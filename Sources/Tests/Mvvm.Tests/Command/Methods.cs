@@ -6,6 +6,8 @@ namespace Mvvm.Tests.Command
 {
     public class Methods
     {
+        #region CanExecute
+
         [Fact]
         public void CanExecute_ShouldUseArgumentInInvokedMethod()
         {
@@ -28,5 +30,24 @@ namespace Mvvm.Tests.Command
 
             Assert.True(command.CanExecute(null));
         }
+
+        #endregion
+
+        #region Execute
+
+        [Fact]
+        public void Execute_ShouldUseArgumentInInvokedMethod()
+        {
+            object result = null;
+            int testValue = 2;
+
+            var command = new Mvvm.Command(() => true, param => result = param);
+
+            command.Execute(testValue);
+
+            Assert.Equal(testValue, result);
+        }
+
+        #endregion
     }
 }
