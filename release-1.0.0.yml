@@ -25,12 +25,11 @@ steps:
     configuration: 'Release'
     msbuildArchitecture: 'x64'
 
-- task: DotNetCoreCLI@2
+- task: NuGetCommand@2
   displayName: Pack
   inputs:
     command: 'pack'
     packagesToPack: 'Sources/Core/Core.csproj'
-    nobuild: true
     versioningScheme: 'off'
 
 - task: NuGetCommand@2
