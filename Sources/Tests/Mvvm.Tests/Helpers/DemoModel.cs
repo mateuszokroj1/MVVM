@@ -1,25 +1,27 @@
 ﻿namespace Mvvm.Tests.Helpers
 {
-    internal class DemoModel : Mvvm.ViewModel
+    internal class DemoModel : Mvvm.ModelBase
     {
-        public void Raise1(string param)
+        public DemoModel() : base() { }
+
+        public new void RaisePropertyChanged(string param)
         {
-            RaisePropertyChanged(param);
+            base.RaisePropertyChanged(param);
         }
 
-        public void Raise2(params string[] @params)
+        public new void RaisePropertiesChanged(params string[] @params)
         {
-            RaisePropertiesChanged(@params);
+            base.RaisePropertiesChanged(@params);
         }
 
-        public void Set1<T>(ref T dest, T src, string name)
+        public new void SetPropertyAndNotify<T>(ref T dest, T src, string name)
         {
-            SetPropertyAndNotify(ref dest, src, name);
+            base.SetPropertyAndNotify(ref dest, src, name);
         }
 
-        public void Set2<T>(ref T dest, T src, params string[] names)
+        public new void SetPropertyAndNotifyMany<T>(ref T dest, T src, params string[] names)
         {
-            SetPropertyAndNotifyMany(ref dest, src, names);
+            base.SetPropertyAndNotifyMany(ref dest, src, names);
         }
     }
 }

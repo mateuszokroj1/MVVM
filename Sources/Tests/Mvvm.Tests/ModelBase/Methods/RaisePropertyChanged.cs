@@ -15,7 +15,7 @@ namespace Mvvm.Tests.ViewModel.Methods
             var model = new DemoModel();
             model.PropertyChanged += (obj, e) => result = e.PropertyName;
 
-            model.Raise1(testValue);
+            model.RaisePropertyChanged(testValue);
 
             Assert.Null(result);
         }
@@ -28,7 +28,7 @@ namespace Mvvm.Tests.ViewModel.Methods
         {
             var model = new DemoModel();
 
-            Assert.PropertyChanged(model, testValue, () => model.Raise1(testValue));
+            Assert.PropertyChanged(model, testValue, () => model.RaisePropertyChanged(testValue));
         }
     }
 }

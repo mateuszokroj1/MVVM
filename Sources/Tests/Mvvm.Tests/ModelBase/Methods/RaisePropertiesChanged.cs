@@ -5,7 +5,7 @@ using Mvvm.Tests.Helpers;
 
 using Xunit;
 
-namespace Mvvm.Tests.ViewModel.Methods
+namespace Mvvm.Tests.ModelBase.Methods
 {
     public class RaisePropertiesChanged
     {
@@ -25,7 +25,7 @@ namespace Mvvm.Tests.ViewModel.Methods
 
             model.PropertyChanged += (obj, e) => result = testValue;
 
-            model.Raise2(argument_forTest1);
+            model.RaisePropertiesChanged(argument_forTest1);
 
             Assert.Null(result);
         }
@@ -39,7 +39,7 @@ namespace Mvvm.Tests.ViewModel.Methods
 
             model.PropertyChanged += (obj, e) => results.Add(e.PropertyName);
 
-            model.Raise2(this.argument_forTest2);
+            model.RaisePropertiesChanged(this.argument_forTest2);
 
             Assert.Equal(expectedResults, results);
         }

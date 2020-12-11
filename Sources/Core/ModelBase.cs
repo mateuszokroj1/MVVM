@@ -6,7 +6,7 @@ namespace Mvvm
     /// <summary>
     /// Base class for view models classes. Implements basic functionality 
     /// </summary>
-    public abstract class ViewModel : INotifyPropertyChanged
+    public abstract class ModelBase : INotifyPropertyChanged
     {
         #region Fields
 
