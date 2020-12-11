@@ -1,4 +1,7 @@
-﻿using Mvvm.Tests.Helpers;
+﻿using System.Collections.Generic;
+using System.Linq;
+
+using Mvvm.Tests.Helpers;
 
 using Xunit;
 
@@ -30,7 +33,15 @@ namespace Mvvm.Tests.ViewModel.Methods
         [Fact]
         public void WhenSomeArgumentsAreInvalid_ShouldNotifyAboutValidElements()
         {
+            var expectedResults = this.argument_forTest2.Where(name => !string.IsNullOrWhiteSpace(name));
+            var results = new List<string>(expectedResults.Count());
+            var model = new DemoModel();
 
+            model.PropertyChanged += (obj, e) => results.Add(e.PropertyName);
+
+            model.Raise2(this.argument_forTest2);
+
+            Assert.Equal(expectedResults, results);
         }
     }
 }
