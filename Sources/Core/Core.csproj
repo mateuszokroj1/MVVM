@@ -4,14 +4,18 @@
     <TargetFrameworks>net46;netstandard2.0;net5</TargetFrameworks>
     <AssemblyName>Mvvm</AssemblyName>
     <RootNamespace>Mvvm</RootNamespace>
-    <Version>0.9.0</Version>
+    <Version>1.0.0</Version>
     <Authors>Mateusz Okrój</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://mateuszokroj1.visualstudio.com/Libraries</PackageProjectUrl>
     <RepositoryUrl>https://github.com/mateuszokroj1/MVVM.git</RepositoryUrl>
     <PackageTags>mvvm wpf uwp universal windows net net5 ui viewmodel model</PackageTags>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <PackageReleaseNotes>Preview developer version from CI rolling build</PackageReleaseNotes>
+    <PackageReleaseNotes>First release of this package.
+
+Features:
+- Basic command implementation
+- Base class for model creating that implements INotifyPropertyChanged</PackageReleaseNotes>
     <Description>Collection of commonly used elements in MVVM architectural pattern.</Description>
     <Product>MVVM</Product>
     <RepositoryType>git</RepositoryType>
