@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Mvvm.Tests.Helpers
+﻿namespace Mvvm.Tests.Helpers
 {
     internal class DemoModel : Mvvm.ViewModel
     {
@@ -25,7 +19,7 @@ namespace Mvvm.Tests.Helpers
 
         public void Set2<T>(ref T dest, T src, params string[] names)
         {
-            SetPropertyAndNotify(ref dest, src, names);
+            SetPropertyAndNotifyMany(ref dest, src, names);
         }
     }
 }
