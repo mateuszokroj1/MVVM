@@ -1,54 +1,36 @@
-﻿using System;
-using System.ComponentModel;
-using System.Linq;
-using System.Reactive.Linq;
+﻿using Mvvm.Tests.Helpers;
 
-using Mvvm.Tests.Helpers;
+using Xunit;
 
 namespace Mvvm.Tests.ViewModel.Methods
 {
     public class RaisePropertiesChanged
     {
-        #region Constructor
-
-        public RaisePropertiesChanged()
-        {
-            this.propertyChangedObservable =
-                Observable
-                .FromEventPattern<PropertyChangedEventHandler, PropertyChangedEventArgs>
-                (
-                    handler => this.model.PropertyChanged += handler,
-                    handler => this.model.PropertyChanged -= handler
-                )
-                .Select(args => args?.EventArgs?.PropertyName);
-        }
-
-        #endregion
-
         #region Fields
 
-        private readonly DemoModel model = new DemoModel();
-        private readonly IObservable<string> propertyChangedObservable;
-
-        private readonly string[] raise2_nullArgument1 = null;
-        private readonly string[] raise2_nullArgument2 = new string[] { null, "TEST1", "", "   54$%( " };
+        private readonly string[] argument_forTest1 = null;
+        private readonly string[] argument_forTest2 = new string[] { null, "", " ", "a 1 %" };
 
         #endregion
 
-        public void 
+        [Fact]
+        public void WhenArgumentIsNull_ShouldDoNothing()
+        {
+            var model = new DemoModel();
+            object result = null;
+            object testValue = new object();
 
-        var expectedResult = raise2_nullArgument1.Where(value => !string.IsNullOrEmpty(value));
+            model.PropertyChanged += (obj, e) => result = testValue;
 
-        List<string> resultlist = new List<string>();
+            model.Raise2(argument_forTest1);
 
-            this.propertyChangedObservable.Subscribe(value => resultlist.Add(value));
+            Assert.Null(result);
+        }
 
-            this.model.Raise2(raise2_nullArgument1);
+        [Fact]
+        public void WhenSomeArgumentsAreInvalid_ShouldNotifyAboutValidElements()
+        {
 
-            Assert.Equal(expectedResult.Count(), resultlist.Count);
-
-            foreach (var expectedValue in expectedResult)
-                if (!resultlist.Contains(expectedValue))
-                    throw new AssertActualExpectedException(expectedResult, resultlist, "Collections are not equal");
+        }
     }
 }
