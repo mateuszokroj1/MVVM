@@ -1,0 +1,48 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+name: MVVM.UWP - release - nightly build
+
+trigger: none
+
+schedules:
+  - cron: "0 0 * * *"
+    displayName: MVVM.UWP - release - daily nightly build
+    always: false
+
+pool:
+  vmImage: 'windows-latest'
+
+steps:
+
+- task: NuGetCommand@2
+  displayName: Restore MVVM solution
+  inputs:
+    command: 'restore'
+    restoreSolution: 'Sources/MVVM.sln'
+    feedsToUse: 'select'
+    vstsFeed: '38bc0da1-3319-433c-a904-026e89025e23/ee6b9c5d-1dfb-404c-ad78-604066a68c11'
+
+- task: VSBuild@1
+  displayName: Build MVVM solution
+  inputs:
+    solution: 'Sources/MVVM.sln'
+    configuration: 'Debug'
+    clean: true
+
+- task: NuGetCommand@2
+  displayName: Pack Mvvm.Uwp.nuspec
+  inputs:
+    command: 'pack'
+    packagesToPack: 'Sources/UI/Mvvm.Uwp/Mvvm.Uwp.nuspec'
+    versioningScheme: 'off'
+
+- task: NuGetCommand@2
+  displayName: Publish to NuGet.org
+  inputs:
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+    nuGetFeedType: 'external'
+    publishFeedCredentials: 'Nuget.org mateuszokroj1'

@@ -1,0 +1,49 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+name: MVVM.Core - release - nightly build
+
+trigger: none
+
+schedules:
+  - cron: "0 0 * * *"
+    displayName: MVVM.Core - release - daily nightly build
+    always: false
+
+pool:
+  vmImage: 'windows-latest'
+
+steps:
+
+- task: NuGetCommand@2
+  displayName: Restore Core.csproj
+  inputs:
+    command: 'restore'
+    restoreSolution: 'Sources/Core/Core.csproj'
+    feedsToUse: 'select'
+    vstsFeed: '38bc0da1-3319-433c-a904-026e89025e23/ee6b9c5d-1dfb-404c-ad78-604066a68c11'
+
+- task: DotNetCoreCLI@2
+  displayName: Build Core.csproj
+  inputs:
+    command: 'build'
+    projects: 'Sources/Core/Core.csproj'
+    configuration: Debug
+
+- task: DotNetCoreCLI@2
+  displayName: Pack Core.csproj
+  inputs:
+    command: 'pack'
+    packagesToPack: 'Sources/Core/Core.csproj'
+    nobuild: true
+    includesource: true
+
+- task: NuGetCommand@2
+  displayName: Publish to NuGet.org
+  inputs:
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+    nuGetFeedType: 'external'
+    publishFeedCredentials: 'Nuget.org mateuszokroj1'
