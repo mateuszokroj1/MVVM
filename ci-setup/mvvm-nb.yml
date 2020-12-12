@@ -21,11 +21,6 @@ pool:
 
 steps:
 
-- task: UseDotNet@2
-  inputs:
-    packageType: 'sdk'
-    version: '5.0.0'
-
 - task: NuGetCommand@2
   displayName: Restore solution
   inputs:
