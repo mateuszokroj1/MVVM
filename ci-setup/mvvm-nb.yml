@@ -40,5 +40,5 @@ steps:
   displayName: Test all projects
   inputs:
     command: 'test'
-    projects: 'Sources/Tests/Mvvm.Tests/Mvvm.Tests.csproj;Sources/Tests/Mvvm.Wpf.Tests/Mvvm.Wpf.Tests.csproj'
+    projects: '**/*.csproj;!**/*Uwp*'
     testRunTitle: 'MVVM nightly build'
