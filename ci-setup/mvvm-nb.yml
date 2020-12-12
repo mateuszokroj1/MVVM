@@ -44,8 +44,11 @@ steps:
       **\*test*.dll
       !**\*TestAdapter.dll
       !**\obj\**
+      !**\xunit.runner.visualstudio.testadapter.dll
+      !**\xunit.runner.visualstudio.dotnetcore.testadapter.dll
     searchFolder: '$(System.DefaultWorkingDirectory)'
-    runInParallel: true
+    vsTestVersion: '16.0'
+    runInParallel: false
     codeCoverageEnabled: true
     testRunTitle: 'MVVM nightly build'
     failOnMinTestsNotRun: true
