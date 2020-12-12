@@ -48,6 +48,5 @@ steps:
     runInParallel: true
     codeCoverageEnabled: true
     testRunTitle: 'MVVM nightly build'
-    configuration: 'Release'
     failOnMinTestsNotRun: true
-    minimumExpectedTests: $(MinimumExpectedTests)
+    minimumExpectedTests: '$(MinimumExpectedTests)'
