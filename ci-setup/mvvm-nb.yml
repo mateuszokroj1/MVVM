@@ -21,6 +21,11 @@ pool:
 
 steps:
 
+- task: UseDotNet@2
+  inputs:
+    packageType: 'sdk'
+    version: '5.0.x'
+
 - task: NuGetCommand@2
   displayName: Restore solution
   inputs:
@@ -40,5 +45,5 @@ steps:
   displayName: Test all projects
   inputs:
     command: 'test'
-    projects: '**/*.csproj;!**/*Uwp*'
+    projects: '**/*.csproj'
     testRunTitle: 'MVVM nightly build'
