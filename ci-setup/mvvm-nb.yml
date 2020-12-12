@@ -46,9 +46,14 @@ steps:
     configuration: 'Release'
     clean: true
 
-- task: DotNetCoreCLI@2
-  displayName: Test all projects
+- task: VSTest@2
   inputs:
-    command: 'test'
-    projects: '**/*.csproj'
-    testRunTitle: 'MVVM nightly build'
+    testSelector: 'testAssemblies'
+    testAssemblyVer2: |
+      **\*test*.dll
+      !**\*TestAdapter.dll
+      !**\obj\**
+    searchFolder: '$(System.DefaultWorkingDirectory)'
+    vsTestVersion: '16.0'
+    codeCoverageEnabled: true
+    configuration: 'Release'
