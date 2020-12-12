@@ -21,6 +21,11 @@ pool:
 
 steps:
 
+- task: UseDotNet@2
+  inputs:
+    packageType: 'sdk'
+    version: '5.0'
+
 - task: NuGetCommand@2
   displayName: Restore solution
   inputs:
@@ -40,5 +45,5 @@ steps:
   displayName: Test all projects
   inputs:
     command: 'test'
-    projects: 'Sources/Tests/Mvvm.Tests/Mvvm.Tests.csproj,Sources/Tests/Mvvm.Wpf.Tests/Mvvm.Wpf.Tests.csproj'
+    projects: 'Sources/Tests/Mvvm.Tests/Mvvm.Tests.csproj;Sources/Tests/Mvvm.Wpf.Tests/Mvvm.Wpf.Tests.csproj'
     testRunTitle: 'MVVM nightly build'
