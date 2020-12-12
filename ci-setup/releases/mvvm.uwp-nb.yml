@@ -10,6 +10,9 @@ trigger: none
 schedules:
   - cron: "0 0 * * *"
     displayName: MVVM.UWP - release - daily nightly build
+    branches:
+      include:
+        - Releases/MVVM.UWP/0.9.x
     always: false
 
 pool:
@@ -37,7 +40,10 @@ steps:
   inputs:
     command: 'pack'
     packagesToPack: 'Sources/UI/Mvvm.Uwp/Mvvm.Uwp.nuspec'
-    versioningScheme: 'off'
+    versioningScheme: 'byPrereleaseNumber'
+    majorVersion: '0'
+    minorVersion: '9'
+    patchVersion: '0'
 
 - task: NuGetCommand@2
   displayName: Publish to NuGet.org
