@@ -45,8 +45,6 @@ steps:
       !**\obj\**
     searchFolder: '$(System.DefaultWorkingDirectory)'
     otherConsoleOptions: '/Framework:.NETCoreApp,Version=5.0'
-    runInParallel: true
-    runTestsInIsolation: true
     codeCoverageEnabled: true
     testRunTitle: 'MVVM nightly build'
     failOnMinTestsNotRun: true
