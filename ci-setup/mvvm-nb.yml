@@ -51,4 +51,4 @@ steps:
     command: 'test'
     projects:
       Sources/Tests/MVVM.Tests/MVVM.Tests.csproj
-      Sources/Tests/MVVM.WPF/MVVM.UWP.csproj
+      Sources/Tests/MVVM.WPF/MVVM.WPF.csproj
