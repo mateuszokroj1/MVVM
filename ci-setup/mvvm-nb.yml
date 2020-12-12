@@ -44,7 +44,7 @@ steps:
       !**\*TestAdapter.dll
       !**\obj\**
     searchFolder: '$(System.DefaultWorkingDirectory)/Sources/Tests'
-    otherConsoleOptions: '/Framework:.NET,Version=5.0'
+    otherConsoleOptions: '/Framework:.NETCoreApp,Version=5.0'
     runInParallel: true
     runTestsInIsolation: true
     codeCoverageEnabled: true
