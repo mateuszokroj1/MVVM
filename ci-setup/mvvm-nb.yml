@@ -40,5 +40,5 @@ steps:
   displayName: Test all projects
   inputs:
     command: 'test'
-    projects: '**/*.csproj'
+    projects: 'Sources/Tests/**/*.csproj'
     testRunTitle: 'MVVM nightly build'
