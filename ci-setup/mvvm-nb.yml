@@ -36,16 +36,8 @@ steps:
     configuration: 'Release'
     clean: true
 
-- task: VSTest@2
+- task: DotNetCoreCLI@2
   inputs:
-    testSelector: 'testAssemblies'
-    testAssemblyVer2: |
-      **\*test*.dll
-      !**\*TestAdapter.dll
-      !**\obj\**
-    searchFolder: '$(System.DefaultWorkingDirectory)'
-    otherConsoleOptions: '/Framework:.NETCoreApp,Version=5.0'
-    codeCoverageEnabled: true
+    command: 'test'
+    projects: '**/*.csproj'
     testRunTitle: 'MVVM nightly build'
-    failOnMinTestsNotRun: true
-    minimumExpectedTests: '$(MinimumExpectedTests)'
