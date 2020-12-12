@@ -12,17 +12,18 @@ pool:
 
 steps:
 
-- task: DotNetCoreCLI@2
-  displayName: Restore all projects
+- task: NuGetCommand@2
+  displayName: Restore solution
   inputs:
     command: 'restore'
-    projects: '**/*.csproj'
+    restoreSolution: '**/*.sln'
     feedsToUse: 'select'
     vstsFeed: '38bc0da1-3319-433c-a904-026e89025e23/ee6b9c5d-1dfb-404c-ad78-604066a68c11'
 
-- task: DotNetCoreCLI@2
-  displayName: Build all projects
+- task: VSBuild@1
+  displayName: Build solution
   inputs:
-    command: 'build'
-    projects: '**/*.csproj'
-    configuration: Debug
+    solution: '**\*.sln'
+    configuration: 'Debug'
+    clean: false
+    maximumCpuCount: true
