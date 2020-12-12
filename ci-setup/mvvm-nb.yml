@@ -49,6 +49,6 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'test'
-    projects:
+    projects: |
       Sources/Tests/MVVM.Tests/MVVM.Tests.csproj
       Sources/Tests/MVVM.WPF/MVVM.WPF.csproj
