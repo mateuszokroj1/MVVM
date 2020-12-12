@@ -36,20 +36,8 @@ steps:
     configuration: 'Release'
     clean: true
 
-- task: VSTest@2
-  displayName: Test solution
+- task: DotNetCoreCLI@2
   inputs:
-    testSelector: 'testAssemblies'
-    testAssemblyVer2: |
-      **\bin\$(BuildConfiguration)\**\*test*.dll
-      !**\obj\**
-      !**\xunit.runner.visualstudio.testadapter.dll
-      !**\xunit.runner.visualstudio.dotnetcore.testadapter.dll
-    searchFolder: '$(System.DefaultWorkingDirectory)'
-    runInParallel: true
-    runTestsInIsolation: true
-    codeCoverageEnabled: true
+    command: 'test'
+    projects: 'Sources/Tests/Mvvm.Tests/Mvvm.Tests.csproj,Sources/Tests/Mvvm.Wpf.Tests/Mvvm.Wpf.Tests.csproj'
     testRunTitle: 'MVVM nightly build'
-    configuration: 'Release'
-    failOnMinTestsNotRun: true
-    minimumExpectedTests: '$(MinimumExpectedTests)'
