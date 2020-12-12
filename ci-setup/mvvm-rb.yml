@@ -16,14 +16,14 @@ steps:
   displayName: Restore solution
   inputs:
     command: 'restore'
-    restoreSolution: '**/*.sln'
+    restoreSolution: $(MVVMSolutionPath)
     feedsToUse: 'select'
     vstsFeed: '38bc0da1-3319-433c-a904-026e89025e23/ee6b9c5d-1dfb-404c-ad78-604066a68c11'
 
 - task: VSBuild@1
   displayName: Build solution
   inputs:
-    solution: '**\*.sln'
+    solution: $(MVVMSolutionPath)
     configuration: 'Debug'
     clean: false
     maximumCpuCount: true
