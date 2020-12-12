@@ -26,6 +26,11 @@ steps:
     packageType: 'sdk'
     version: '5.0.x'
 
+- task: UseDotNet@2
+  inputs:
+    packageType: 'sdk'
+    version: '3.0.1'
+
 - task: NuGetCommand@2
   displayName: Restore solution
   inputs:
