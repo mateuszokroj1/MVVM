@@ -10,6 +10,9 @@ trigger: none
 schedules:
   - cron: "0 0 * * *"
     displayName: MVVM.Core - release - daily nightly build
+    branches:
+      include:
+        - Releases/MVVM.Core/1.0.x
     always: false
 
 pool:
@@ -38,7 +41,11 @@ steps:
     command: 'pack'
     packagesToPack: 'Sources/Core/Core.csproj'
     nobuild: true
-    includesource: true
+    includesymbols: true
+    versioningScheme: 'byPrereleaseNumber'
+    majorVersion: '1'
+    minorVersion: '0'
+    patchVersion: '1'
 
 - task: NuGetCommand@2
   displayName: Publish to NuGet.org
