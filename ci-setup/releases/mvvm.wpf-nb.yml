@@ -10,6 +10,9 @@ trigger: none
 schedules:
   - cron: "0 0 * * *"
     displayName: MVVM.WPF - release - daily nightly build
+    branches:
+      include:
+        - Releases/MVVM.WPF/0.9.x
     always: false
 
 pool:
@@ -39,6 +42,10 @@ steps:
     packagesToPack: 'Sources/UI/Mvvm.Wpf/Mvvm.Wpf.csproj'
     nobuild: true
     includesymbols: true
+    versioningScheme: 'byPrereleaseNumber'
+    majorVersion: '0'
+    minorVersion: '9'
+    patchVersion: '0'
 
 - task: NuGetCommand@2
   displayName: Publish to NuGet.org
