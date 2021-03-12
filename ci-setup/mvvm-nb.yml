@@ -21,6 +21,16 @@ pool:
 
 steps:
 
+- task: UseDotNet@2
+  inputs:
+    packageType: 'sdk'
+    version: '5.0.x'
+
+- task: UseDotNet@2
+  inputs:
+    packageType: 'sdk'
+    version: '3.1.x'
+
 - task: NuGetCommand@2
   displayName: Restore solution
   inputs:
@@ -36,18 +46,9 @@ steps:
     configuration: 'Release'
     clean: true
 
-- task: VSTest@2
-  displayName: Test solution
+- task: DotNetCoreCLI@2
   inputs:
-    testSelector: 'testAssemblies'
-    testAssemblyVer2: |
-      **\*test*.dll
-      !**\*TestAdapter.dll
-      !**\obj\**
-    searchFolder: '$(System.DefaultWorkingDirectory)'
-    runInParallel: true
-    codeCoverageEnabled: true
-    testRunTitle: 'MVVM nightly build'
-    configuration: 'Release'
-    failOnMinTestsNotRun: true
-    minimumExpectedTests: $(MinimumExpectedTests)
+    command: 'test'
+    projects: |
+      Sources/Tests/MVVM.Tests/MVVM.Tests.csproj
+      Sources/Tests/MVVM.WPF/MVVM.WPF.csproj
