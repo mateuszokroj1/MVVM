@@ -24,8 +24,10 @@ namespace Mvvm.Tests.ModelBase.Methods
                 Assert.PropertyChanged(demo, propertyName, () => demo.SetPropertyAndNotify(ref val2, val1, propertyName));
             else
             {
-                demo.PropertyChanged += (obj, e) => throw new Exception("Invalid operation.");
-                demo.SetPropertyAndNotify(ref val2, val1, propertyName);
+                using (demo.CreatePropertyChangedObservable().Subscribe(_ => throw new InvalidOperationException()))
+                {
+                    demo.SetPropertyAndNotify(ref val2, val1, propertyName);
+                }
             }
             
             Assert.Equal(val1, val2);
@@ -37,9 +39,10 @@ namespace Mvvm.Tests.ModelBase.Methods
             bool val1 = true, val2 = val1;
             var demo = new DemoModel();
 
-            demo.PropertyChanged += (obj, e) => throw new Exception("Invalid operation.");
-
-            demo.SetPropertyAndNotify(ref val1, val2, "Test");
+            using (demo.CreatePropertyChangedObservable().Subscribe(_ => throw new InvalidOperationException()))
+            {
+                demo.SetPropertyAndNotify(ref val1, val2, "Test");
+            }
 
             Assert.Equal(val1, val2);
         }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System;
 
 using Mvvm.Tests.Helpers;
 
@@ -23,9 +24,11 @@ namespace Mvvm.Tests.ModelBase.Methods
             object result = null;
             object testValue = new object();
 
-            model.PropertyChanged += (obj, e) => result = testValue;
-
-            model.RaisePropertiesChanged(argument_forTest1);
+            using (model.CreatePropertyChangedObservable()
+                 .Subscribe(name => result = testValue))
+            {
+                model.RaisePropertiesChanged(argument_forTest1);
+            }
 
             Assert.Null(result);
         }
@@ -37,9 +40,10 @@ namespace Mvvm.Tests.ModelBase.Methods
             var results = new List<string>(expectedResults.Count());
             var model = new DemoModel();
 
-            model.PropertyChanged += (obj, e) => results.Add(e.PropertyName);
-
-            model.RaisePropertiesChanged(this.argument_forTest2);
+            using (model.CreatePropertyChangedObservable().Subscribe(name => results.Add(name)))
+            {
+                model.RaisePropertiesChanged(this.argument_forTest2);
+            }
 
             Assert.Equal(expectedResults, results);
         }
