@@ -1,4 +1,7 @@
-﻿using Mvvm.Tests.Helpers;
+﻿using System;
+using System.Reactive.Linq;
+
+using Mvvm.Tests.Helpers;
 
 using Xunit;
 
@@ -11,11 +14,17 @@ namespace Mvvm.Tests.ViewModel.Methods
         [InlineData("")]
         public void WhenArgumentIsNull_ShouldDoNothing(string testValue)
         {
-            object result = null;
             var model = new DemoModel();
-            model.PropertyChanged += (obj, e) => result = e.PropertyName;
+            string result = null;
 
-            model.RaisePropertyChanged(testValue);
+            using
+            (
+                model.CreatePropertyObservable(testValue, model => "TEST")
+                     .Subscribe(value => result = value)
+            )
+            {
+                model.RaisePropertyChanged(testValue);
+            }
 
             Assert.Null(result);
         }

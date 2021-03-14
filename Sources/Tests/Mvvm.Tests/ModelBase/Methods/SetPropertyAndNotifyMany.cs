@@ -20,9 +20,10 @@ namespace Mvvm.Tests.ModelBase.Methods
             var expectedValues = testedValues.Where(name => !string.IsNullOrWhiteSpace(name));
             var results = new List<string>();
 
-            demo.PropertyChanged += (obj, e) => results.Add(e.PropertyName);
-
-            demo.SetPropertyAndNotifyMany(ref val2, val1, testedValues);
+            using (demo.CreatePropertyChangedObservable().Subscribe(name => results.Add(name)))
+            {
+                demo.SetPropertyAndNotifyMany(ref val2, val1, testedValues);
+            }
 
             Assert.Equal(val1, val2);
             Assert.Equal(expectedValues, results);
@@ -34,9 +35,10 @@ namespace Mvvm.Tests.ModelBase.Methods
             int val1 = 2, val2 = val1;
             var demo = new DemoModel();
 
-            demo.PropertyChanged += (obj, e) => throw new Exception("Invalid operation");
-
-            demo.SetPropertyAndNotifyMany(ref val1, val2, "  ", "", null, "example");
+            using (demo.CreatePropertyChangedObservable().Subscribe(_ => throw new InvalidOperationException()))
+            {
+                demo.SetPropertyAndNotifyMany(ref val1, val2, "  ", "", null, "example");
+            }
 
             string[] nullArray = null;
             demo.SetPropertyAndNotifyMany(ref val1, val2, nullArray);
