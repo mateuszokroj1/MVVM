@@ -4,7 +4,7 @@
     <TargetFrameworks>net46;netstandard2.0;net5</TargetFrameworks>
     <AssemblyName>Mvvm</AssemblyName>
     <RootNamespace>Mvvm</RootNamespace>
-    <Version>1.1.0</Version>
+    <Version>2.0.0</Version>
     <Authors>Mateusz Okrój</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://mateuszokroj1.visualstudio.com/Libraries</PackageProjectUrl>
@@ -13,7 +13,9 @@
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageReleaseNotes>New features available.
 
-New in this version:</PackageReleaseNotes>
+New in this version:
+- Generic view model with model property
+- New methods in ModelBase useful for INotifyPropertyChanged</PackageReleaseNotes>
     <Description>Collection of commonly used elements in MVVM architectural pattern.</Description>
     <Product>MVVM</Product>
     <RepositoryType>git</RepositoryType>
